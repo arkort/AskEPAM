@@ -66,7 +66,16 @@
     <Compile Include="AskService.svc.cs">
       <DependentUpon>AskService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Client.cs" />
+    <Compile Include="Entities\Question.cs" />
+    <Compile Include="Entities\Skill.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Gateway\SkillsProvider.cs" />
+    <Compile Include="Gateway\UserProvider.cs" />
     <Compile Include="IAskService.cs" />
+    <Compile Include="Interfaces\DAO\IDAO.cs" />
+    <Compile Include="Interfaces\Entities\IEntity.cs" />
+    <Compile Include="Interfaces\Entities\IFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
