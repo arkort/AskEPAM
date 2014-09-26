@@ -1,8 +1,11 @@
-﻿using Hardcodet.Wpf.TaskbarNotification;
+﻿using AskEpamClientApplication.ServiceReference1;
+using AskEpamWCFService.Entities;
+using Hardcodet.Wpf.TaskbarNotification;
 using Samples;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,21 +25,52 @@ namespace AskEpamClientApplication
     public partial class MainWindow : Window
     {
 
+        InstanceContext instContext;
+        AskServiceClient connectionToServer;
+        ClientInstance clientInstance;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            // Создание привязки
+            // for notify icon
             CommandBinding bind = new CommandBinding(ApplicationCommands.Open);
-
-            // Присоединение обработчика событий
             bind.Executed += OpenFormCommand_Executed;
-
-            // Регистрация привязки
             this.CommandBindings.Add(bind);
+
+            clientInstance = new ClientInstance();
+
+            instContext = new InstanceContext(clientInstance);
+            connectionToServer = new AskServiceClient(instContext);
+
+            clientInstance.obtainedListOfQuestions += clientInstance_obtainedListOfQuestions;
+
+            //fill combobox with questions
+            connectionToServer.ListQuestions();
         }
 
-        //double click
+        /// <summary>
+        /// fill combobox with questions
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void clientInstance_obtainedListOfQuestions(object sender, ClientInstance.MyEventArgs e)
+        {
+            List<string> listQuestionText = new List<string>();
+            foreach (Question question in e.listQuestions)
+            {
+                listQuestionText.Add(question.QuestionText);
+            }
+            ListBox.ItemsSource = listQuestionText;
+        }
+
+
+
+        /// <summary>
+        /// double click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenFormCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             this.WindowState = WindowState.Normal;
@@ -57,10 +91,10 @@ namespace AskEpamClientApplication
 
         private void MsgButton_Click(object sender, RoutedEventArgs e)
         {
-            allMsg.Text = myMsg.Text;
 
-            //temporary code
+            //temporary code for check work of icon in tray
             myNotifyIcon.ShowCustomBalloon(new FancyBalloon(),PopupAnimation.Slide, 4000);
+        
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -71,6 +105,12 @@ namespace AskEpamClientApplication
             {
                 this.Close();
             }
+        }
+
+        private void AddNewQuestion_Click(object sender, RoutedEventArgs e)
+        {
+            AskQuestionWindow aqw = new AskQuestionWindow(connectionToServer);
+            aqw.ShowDialog();
         }
 
     }

@@ -1,4 +1,6 @@
-﻿using AskEpamWCFService.Entities;
+﻿
+
+using AskEpamWCFService.Entities;
 using AskEpamWCFService.Gateway;
 using System;
 using System.Collections.Generic;
@@ -18,10 +20,17 @@ namespace AskEpamWCFService
 	{
 		private static object _sync = new object();
 
-		private Dictionary<string, Client> _clients = new Dictionary<string, Client>();
+        //private Dictionary<string, Client> _clients = new Dictionary<string, Client>();
 
 		private int _lastId = 0;
 		private List<Question> _questions = new List<Question>();
+
+        IAskCallback callback;
+
+        public AskService()
+        {
+            
+        }
 
 		public void Handshake(string user)
 		{
@@ -32,34 +41,46 @@ namespace AskEpamWCFService
 				currentUser = UserProvider.AddUser(user);
 			}
 
-			if (_clients.ContainsKey(user))
-			{
-				_clients[user].Callback = OperationContext.Current.GetCallbackChannel<IAskCallback>();
-			}
-			else
-			{
-				_clients.Add(user, new Client(user, new Skill() { Id = currentUser.SkillId }, OperationContext.Current.GetCallbackChannel<IAskCallback>()));
-			}
+            //if (_clients.ContainsKey(user))
+            //{
+            //    _clients[user].Callback = OperationContext.Current.GetCallbackChannel<IAskCallback>();
+            //}
+            //else
+            //{
+            //    _clients.Add(user, new Client(user, new Skill() { Id = currentUser.SkillId }, OperationContext.Current.GetCallbackChannel<IAskCallback>()));
+            //}
 		}
 
 		public void AskQuestion(string asker, int area, string question)
 		{
-			Random rand = new Random();
-			var possibleAnswerers = _clients.Values.Where(x => x.Area.Id == area).Where(x => x.Username != asker);
+            //Random rand = new Random();
+            //var possibleAnswerers = _clients.Values.Where(x => x.Area.Id == area).Where(x => x.Username != asker);
 
-			if (possibleAnswerers.Count() > 0)
-			{
-				var answerer = possibleAnswerers.ToList()[rand.Next(possibleAnswerers.Count())];
+            //if (possibleAnswerers.Count() > 0)
+            //{
+            //    var answerer = possibleAnswerers.ToList()[rand.Next(possibleAnswerers.Count())];
 
-				lock (_sync)
-				{
-					answerer.Callback.AskClient(_lastId, question);
+            //    lock (_sync)
+            //    {
+            //        answerer.Callback.AskClient(_lastId, question);
 
-					_questions.Add(new Question() { Id = _lastId, QuestionText = question, Asker = _clients[asker] });
-					_lastId++;
-				}
-			}
+            //        _questions.Add(new Question() { Id = _lastId, QuestionText = question, Asker = _clients[asker] });
+            //        _lastId++;
+            //    }
+            //}
+
+            QuestionsProvider.AddQuestion(question);
 		}
+
+        /// <summary>
+        /// sending list of questions to client
+        /// </summary>
+        public void ListQuestions()
+        {
+            callback = OperationContext.Current.GetCallbackChannel<IAskCallback>();
+            callback.SendListQuestionsToClient(QuestionsProvider.ListQuestions());     
+        }
+
 
 		public List<Skill> GetAreas()
 		{
@@ -73,8 +94,8 @@ namespace AskEpamWCFService
 
 		public void GetAnswerFromClient(int id, string answer, string answerer)
 		{
-			_questions.FirstOrDefault(x => x.Id == id).Asker.Callback.SendAnswerToClient(answer, answerer);
-			_questions.Remove(_questions.FirstOrDefault(x => x.Id == id));
+            //_questions.FirstOrDefault(x => x.Id == id).Asker.Callback.SendAnswerToClient(answer, answerer);
+            //_questions.Remove(_questions.FirstOrDefault(x => x.Id == id));
 		}
 	}
 }

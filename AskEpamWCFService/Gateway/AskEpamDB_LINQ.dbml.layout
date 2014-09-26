@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="AskEpamDB_LINQ">
+  <DataContextMoniker Name="/AskEpamDB_LINQDataContext" />
+  <nestedChildShapes>
+    <classShape Id="f0acc6cd-b59d-4de4-912b-28ba31b0ecdd" absoluteBounds="4.5, 2.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/AskEpamDB_LINQDataContext/UserQuestion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9a19526e-e9c1-4c7d-8ecf-8377916fedc4" absoluteBounds="4.515, 2.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

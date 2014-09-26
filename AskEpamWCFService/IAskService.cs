@@ -1,4 +1,5 @@
-﻿using AskEpamWCFService.Entities;
+﻿
+using AskEpamWCFService.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,9 @@ namespace AskEpamWCFService
 		[OperationContract(IsOneWay = true)]
 		void AskQuestion(string asker, int area, string question);
 
+        [OperationContract(IsOneWay = true)]
+        void ListQuestions();
+
 		[OperationContract]
 		List<Skill> GetAreas();
 
@@ -35,5 +39,8 @@ namespace AskEpamWCFService
 
 		[OperationContract(IsOneWay = true)]
 		void AskClient(int id, string question);
+
+        [OperationContract(IsOneWay = true)]
+        void SendListQuestionsToClient(List<Question> list);
 	}
 }

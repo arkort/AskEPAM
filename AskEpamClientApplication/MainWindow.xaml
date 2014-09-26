@@ -12,18 +12,19 @@
                         DoubleClickCommand="Open"/>
         <Menu Margin="0,0,0,353" >
             <MenuItem Header="File">
-                <MenuItem Header="Empty"></MenuItem>
+                <MenuItem Header="Add new question" Click="AddNewQuestion_Click"></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="Exit" Click="Exit_Click" ></MenuItem>
             </MenuItem>
         </Menu>
-        <Border BorderThickness="1" BorderBrush="Black" Margin="10,59,10,165">
-            <TextBlock Name="allMsg" TextWrapping="Wrap" Text="TextBlock" Margin="0,9,0,0"/>
+        <Border BorderThickness="1" BorderBrush="Black" Margin="10,81,10,165">
+            <TextBlock Name="allMsg" TextWrapping="Wrap" Text="All comments on this question" Margin="0,9,0,0"/>
         </Border>
         <Border BorderThickness="1" BorderBrush="Black" Margin="10,224,10,60">
-            <TextBox Name ="myMsg" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  HorizontalAlignment="Left" Height="89" Margin="0,0,0,0" Text="TextBox" VerticalAlignment="Top" Width="351"/>
+            <TextBox Name ="myMsg" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  HorizontalAlignment="Left" Height="89" Margin="0,0,0,0" Text="The answer to the question" VerticalAlignment="Top" Width="351"/>
         </Border>
         <Button Content="Send message" HorizontalAlignment="Left" Margin="56,329,0,0" VerticalAlignment="Top" Width="274" Height="40" Click="MsgButton_Click"/>
-        
+        <ComboBox Name="ListBox" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="343" Height="24"/>
+
     </Grid>
 </Window>

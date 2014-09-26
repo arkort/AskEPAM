@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -66,10 +67,12 @@
     <Compile Include="AskService.svc.cs">
       <DependentUpon>AskService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Client.cs" />
-    <Compile Include="Entities\Question.cs" />
-    <Compile Include="Entities\Skill.cs" />
-    <Compile Include="Entities\User.cs" />
+    <Compile Include="Gateway\AskEpamDB_LINQ.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AskEpamDB_LINQ.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Gateway\QuestionsProvider.cs" />
     <Compile Include="Gateway\SkillsProvider.cs" />
     <Compile Include="Gateway\UserProvider.cs" />
     <Compile Include="IAskService.cs" />
@@ -82,12 +85,31 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Gateway\AskEpamDB_LINQ.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>AskEpamDB_LINQ.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Gateway\AskEpamDB_LINQ.dbml.layout">
+      <DependentUpon>AskEpamDB_LINQ.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AskEpamEntities\AskEpamEntities.csproj">
+      <Project>{fcdb6383-ad96-471c-997d-5bbb6f4781ff}</Project>
+      <Name>AskEpamEntities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
