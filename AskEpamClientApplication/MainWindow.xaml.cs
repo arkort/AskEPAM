@@ -43,7 +43,7 @@ namespace AskEpamClientApplication
             instContext = new InstanceContext(clientInstance);
             connectionToServer = new AskServiceClient(instContext);
 
-            clientInstance.obtainedListOfQuestions += clientInstance_obtainedListOfQuestions;
+            clientInstance.obtainedListOfQuestions += ClientInstance_obtainedListOfQuestions;
 
             //fill combobox with questions
             connectionToServer.ListQuestions();
@@ -54,7 +54,7 @@ namespace AskEpamClientApplication
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void clientInstance_obtainedListOfQuestions(object sender, ClientInstance.MyEventArgs e)
+        void ClientInstance_obtainedListOfQuestions(object sender, ClientInstance.MyEventArgs e)
         {
             List<string> listQuestionText = new List<string>();
             foreach (Question question in e.listQuestions)
@@ -62,6 +62,7 @@ namespace AskEpamClientApplication
                 listQuestionText.Add(question.QuestionText);
             }
             ListBox.ItemsSource = listQuestionText;
+            ListBox.SelectedIndex = 0;
         }
 
 
