@@ -1,6 +1,7 @@
 ﻿
 
-using AskEpamWCFService.Entities;
+
+using AskEpamEntities;
 using AskEpamWCFService.Gateway;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,11 @@ namespace AskEpamWCFService
             
         }
 
+        public void AddComment(int idQuestion, string text)
+        {
+            CommentProvider.AddComment(idQuestion, text);
+        }
+
 		public void Handshake(string user)
 		{
 			var currentUser = UserProvider.GetUser(user);
@@ -51,7 +57,7 @@ namespace AskEpamWCFService
             //}
 		}
 
-		public void AskQuestion(string asker, int area, string question)
+		public void AskQuestion(string asker, int section, string question)
 		{
             //Random rand = new Random();
             //var possibleAnswerers = _clients.Values.Where(x => x.Area.Id == area).Where(x => x.Username != asker);
@@ -69,7 +75,7 @@ namespace AskEpamWCFService
             //    }
             //}
 
-            QuestionsProvider.AddQuestion(question);
+            QuestionsProvider.AddQuestion(section,question);
 		}
 
         /// <summary>
@@ -78,7 +84,16 @@ namespace AskEpamWCFService
         public void ListQuestions()
         {
             callback = OperationContext.Current.GetCallbackChannel<IAskCallback>();
-            callback.SendListQuestionsToClient(QuestionsProvider.ListQuestions());     
+            callback.SendListQuestionsToClient(QuestionsProvider.ListQuestions(), SectionsProvider.ListSections());     
+        }
+
+        /// <summary>
+        /// sending list of comments to client
+        /// </summary>
+        public void ListComments()
+        {
+            callback = OperationContext.Current.GetCallbackChannel<IAskCallback>();
+            callback.SendListCommentsToClient(CommentProvider.ListComments());
         }
 
 

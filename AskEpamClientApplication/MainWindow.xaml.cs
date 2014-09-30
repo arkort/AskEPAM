@@ -1,5 +1,5 @@
 ﻿using AskEpamClientApplication.ServiceReference1;
-using AskEpamWCFService.Entities;
+using AskEpamEntities;
 using Hardcodet.Wpf.TaskbarNotification;
 using Samples;
 using System;
@@ -24,6 +24,7 @@ namespace AskEpamClientApplication
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<QuestionSection> sections;
 
         InstanceContext instContext;
         AskServiceClient connectionToServer;
@@ -43,10 +44,27 @@ namespace AskEpamClientApplication
             instContext = new InstanceContext(clientInstance);
             connectionToServer = new AskServiceClient(instContext);
 
-            clientInstance.obtainedListOfQuestions += ClientInstance_obtainedListOfQuestions;
-
             //fill combobox with questions
+            clientInstance.obtainedListOfQuestions += ClientInstance_obtainedListOfQuestions;
             connectionToServer.ListQuestions();
+
+            //read comments
+            clientInstance.obtainedListOfComments += clientInstance_obtainedListOfComments;
+            connectionToServer.ListComments();
+        }
+
+        void clientInstance_obtainedListOfComments(object sender, ClientInstance.CommentEventArgs e)
+        {
+            allMsg.Text = "";
+            List<string> listQuestionText = new List<string>();
+            foreach (UserComment comment in e.ListComments)
+            {
+                listQuestionText.Add(comment.Text);
+                allMsg.Text += "\n" + comment.Text + "\n-------------------------------------------";
+            }
+            
+            
+
         }
 
         /// <summary>
@@ -54,13 +72,16 @@ namespace AskEpamClientApplication
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ClientInstance_obtainedListOfQuestions(object sender, ClientInstance.MyEventArgs e)
+        void ClientInstance_obtainedListOfQuestions(object sender, ClientInstance.QuestionEventArgs e)
         {
             List<string> listQuestionText = new List<string>();
-            foreach (Question question in e.listQuestions)
+            foreach (Question question in e.ListQuestions)
             {
                 listQuestionText.Add(question.QuestionText);
             }
+
+            sections = e.Sections.ToList();
+
             ListBox.ItemsSource = listQuestionText;
             ListBox.SelectedIndex = 0;
         }
@@ -68,7 +89,7 @@ namespace AskEpamClientApplication
 
 
         /// <summary>
-        /// double click
+        /// double click on notify icon
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -92,10 +113,10 @@ namespace AskEpamClientApplication
 
         private void MsgButton_Click(object sender, RoutedEventArgs e)
         {
-
             //temporary code for check work of icon in tray
             myNotifyIcon.ShowCustomBalloon(new FancyBalloon(),PopupAnimation.Slide, 4000);
-        
+
+            connectionToServer.AddComment(0, myMsg.Text);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -110,7 +131,7 @@ namespace AskEpamClientApplication
 
         private void AddNewQuestion_Click(object sender, RoutedEventArgs e)
         {
-            AskQuestionWindow aqw = new AskQuestionWindow(connectionToServer);
+            AskQuestionWindow aqw = new AskQuestionWindow(connectionToServer, sections);
             aqw.ShowDialog();
         }
 

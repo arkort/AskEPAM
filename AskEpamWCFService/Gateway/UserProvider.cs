@@ -1,7 +1,6 @@
 ﻿
 
-
-using AskEpamWCFService.Entities;
+using AskEpamEntities;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

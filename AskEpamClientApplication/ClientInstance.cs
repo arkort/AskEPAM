@@ -1,5 +1,5 @@
 ﻿using AskEpamClientApplication.ServiceReference1;
-using AskEpamWCFService.Entities;
+using AskEpamEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,33 +9,48 @@ namespace AskEpamClientApplication
 {
     public class ClientInstance : IAskServiceCallback
     {
-        public Question[] ListQuestions { get; set; }
+        //public Question[] ListQuestions { get; set; }
 
-        public class MyEventArgs : EventArgs
+        //public UserComment[] ListComments { get; set; }
+
+        public string[] Sections { get; set; }
+
+        public class QuestionEventArgs : EventArgs
         {
-            public Question[] listQuestions { get; set; }
+            public Question[] ListQuestions { get; set; }
+            public QuestionSection[] Sections { get; set; }
         }
 
-        //public delegate void fillListQuestions(Question[] list);
+        public event EventHandler<QuestionEventArgs> obtainedListOfQuestions;
 
-        public event EventHandler<MyEventArgs> obtainedListOfQuestions;
-       
+        public class CommentEventArgs : EventArgs
+        {
+            public UserComment[] ListComments { get; set; }
+        }
+
+        public event EventHandler<CommentEventArgs> obtainedListOfComments;
 
         public void SendAnswerToClient(string answer, string answerer)
         {
 
         }
-
-         
+                 
         public void AskClient(int id, string question)
         {
 
         }
 
-        public void SendListQuestionsToClient(Question[] list)
+        public void SendListQuestionsToClient(Question[] list,QuestionSection[] sections)
         {
-            ListQuestions = list;
-            obtainedListOfQuestions(null,new MyEventArgs(){listQuestions = list});
+            obtainedListOfQuestions(null, new QuestionEventArgs() { ListQuestions = list, Sections = sections });
+
         }
+
+        public void SendListCommentsToClient(UserComment[] list)
+        {
+            obtainedListOfComments(null, new CommentEventArgs() { ListComments = list });
+
+        }
+
     }
 }

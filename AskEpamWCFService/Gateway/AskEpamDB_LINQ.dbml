@@ -1,10 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AskEpamDB" Class="AskEpamDB_LINQDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=EPRUSARW1092\SQLEXPRESS;Initial Catalog=AskEpamDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="AskEpamDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Section" Member="Sections">
+    <Type Name="Section">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.UserQuestions" Member="UserQuestions">
     <Type Name="UserQuestion">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="idUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Question" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="idSection" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comments" Member="Comments">
+    <Type Name="Comment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idQuestion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="text" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
     </Type>
   </Table>
 </Database>

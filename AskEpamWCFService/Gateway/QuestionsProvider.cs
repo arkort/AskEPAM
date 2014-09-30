@@ -1,5 +1,6 @@
 ﻿
-using AskEpamWCFService.Entities;
+
+using AskEpamEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,14 @@ namespace AskEpamWCFService.Gateway
         private const string CONNECTION_STRING = "Data Source=EPRUSARW1092;Persist Security Info=True;database=AskEpamDB";
 
         
-        public static void AddQuestion(string question)
+        public static void AddQuestion(int section,string question)
         {
             AskEpamDB_LINQDataContext context = new AskEpamDB_LINQDataContext();
 
             UserQuestion userQuestion = new UserQuestion()
             {
                 idUser = 0,
+                idSection = section,
                 Question = question
             };
 

@@ -30,9 +30,15 @@ namespace AskEpamWCFService.Gateway
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertSection(Section instance);
+    partial void UpdateSection(Section instance);
+    partial void DeleteSection(Section instance);
     partial void InsertUserQuestion(UserQuestion instance);
     partial void UpdateUserQuestion(UserQuestion instance);
     partial void DeleteUserQuestion(UserQuestion instance);
+    partial void InsertComment(Comment instance);
+    partial void UpdateComment(Comment instance);
+    partial void DeleteComment(Comment instance);
     #endregion
 		
 		public AskEpamDB_LINQDataContext() : 
@@ -65,11 +71,113 @@ namespace AskEpamWCFService.Gateway
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Section> Sections
+		{
+			get
+			{
+				return this.GetTable<Section>();
+			}
+		}
+		
 		public System.Data.Linq.Table<UserQuestion> UserQuestions
 		{
 			get
 			{
 				return this.GetTable<UserQuestion>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Comment> Comments
+		{
+			get
+			{
+				return this.GetTable<Comment>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Section")]
+	public partial class Section : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _title;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OntitleChanging(string value);
+    partial void OntitleChanged();
+    #endregion
+		
+		public Section()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_title", DbType="NChar(10)")]
+		public string title
+		{
+			get
+			{
+				return this._title;
+			}
+			set
+			{
+				if ((this._title != value))
+				{
+					this.OntitleChanging(value);
+					this.SendPropertyChanging();
+					this._title = value;
+					this.SendPropertyChanged("title");
+					this.OntitleChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -86,6 +194,8 @@ namespace AskEpamWCFService.Gateway
 		
 		private string _Question;
 		
+		private System.Nullable<int> _idSection;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -96,6 +206,8 @@ namespace AskEpamWCFService.Gateway
     partial void OnidUserChanged();
     partial void OnQuestionChanging(string value);
     partial void OnQuestionChanged();
+    partial void OnidSectionChanging(System.Nullable<int> value);
+    partial void OnidSectionChanged();
     #endregion
 		
 		public UserQuestion()
@@ -159,6 +271,136 @@ namespace AskEpamWCFService.Gateway
 					this._Question = value;
 					this.SendPropertyChanged("Question");
 					this.OnQuestionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSection", DbType="Int")]
+		public System.Nullable<int> idSection
+		{
+			get
+			{
+				return this._idSection;
+			}
+			set
+			{
+				if ((this._idSection != value))
+				{
+					this.OnidSectionChanging(value);
+					this.SendPropertyChanging();
+					this._idSection = value;
+					this.SendPropertyChanged("idSection");
+					this.OnidSectionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comments")]
+	public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _idQuestion;
+		
+		private string _text;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnidQuestionChanging(System.Nullable<int> value);
+    partial void OnidQuestionChanged();
+    partial void OntextChanging(string value);
+    partial void OntextChanged();
+    #endregion
+		
+		public Comment()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idQuestion", DbType="Int")]
+		public System.Nullable<int> idQuestion
+		{
+			get
+			{
+				return this._idQuestion;
+			}
+			set
+			{
+				if ((this._idQuestion != value))
+				{
+					this.OnidQuestionChanging(value);
+					this.SendPropertyChanging();
+					this._idQuestion = value;
+					this.SendPropertyChanged("idQuestion");
+					this.OnidQuestionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string text
+		{
+			get
+			{
+				return this._text;
+			}
+			set
+			{
+				if ((this._text != value))
+				{
+					this.OntextChanging(value);
+					this.SendPropertyChanging();
+					this._text = value;
+					this.SendPropertyChanged("text");
+					this.OntextChanged();
 				}
 			}
 		}

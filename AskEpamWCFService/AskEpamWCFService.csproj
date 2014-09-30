@@ -72,7 +72,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AskEpamDB_LINQ.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Gateway\CommentProvider.cs" />
     <Compile Include="Gateway\QuestionsProvider.cs" />
+    <Compile Include="Gateway\SectionsProvider.cs" />
     <Compile Include="Gateway\SkillsProvider.cs" />
     <Compile Include="Gateway\UserProvider.cs" />
     <Compile Include="IAskService.cs" />

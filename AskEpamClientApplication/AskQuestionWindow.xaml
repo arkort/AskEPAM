@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Ask Question " Height="300" Width="436" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Border BorderThickness="1" BorderBrush="Black" Margin="33,32,33,138">
+        <Border BorderThickness="1" BorderBrush="Black" Margin="30,62,36,108">
             <TextBox  x:Name ="myMsg" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  HorizontalAlignment="Left" Height="89" Margin="0,0,0,0" Text="What is C#?" VerticalAlignment="Top" Width="351"/>
         </Border>
-        <Button Content="Добавить вопрос" HorizontalAlignment="Left" Margin="69,169,0,0" VerticalAlignment="Top" Width="261" Height="45" Click="Button_Click"/>
+        <Button Content="Добавить вопрос" HorizontalAlignment="Left" Margin="87,186,0,0" VerticalAlignment="Top" Width="261" Height="45" Click="Button_Click"/>
+        <ComboBox Name="SectionsComboBox" HorizontalAlignment="Left" Margin="139,23,0,0" VerticalAlignment="Top" Width="142"/>
     </Grid>
 
 </Window>

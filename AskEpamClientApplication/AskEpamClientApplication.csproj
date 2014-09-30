@@ -94,20 +94,21 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\AskEpamEntities.Skill.datasource" />
     <None Include="Properties\DataSources\AskEpamWCFService.Entities.Skill.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\ServiceReference1\AskEpamWCFService.Entities1.xsd">
+    <None Include="Service References\ServiceReference1\AskEpamEntities.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\service1.wsdl" />
-    <None Include="Service References\ServiceReference1\service2.xsd">
+    <None Include="Service References\ServiceReference1\service.wsdl" />
+    <None Include="Service References\ServiceReference1\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\service21.xsd">
+    <None Include="Service References\ServiceReference1\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -138,6 +139,12 @@
     <Resource Include="Images\student.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AskEpamEntities\AskEpamEntities.csproj">
+      <Project>{fcdb6383-ad96-471c-997d-5bbb6f4781ff}</Project>
+      <Name>AskEpamEntities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
@@ -151,12 +158,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AskEpamEntities\AskEpamEntities.csproj">
-      <Project>{fcdb6383-ad96-471c-997d-5bbb6f4781ff}</Project>
-      <Name>AskEpamEntities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

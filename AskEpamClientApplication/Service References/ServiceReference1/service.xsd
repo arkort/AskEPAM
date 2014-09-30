@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/AskEpamWCFService.Entities" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/AskEpamEntities" />
   <xs:element name="Handshake">
     <xs:complexType>
       <xs:sequence>
@@ -17,12 +17,25 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="asker" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="area" type="xs:int" />
+        <xs:element minOccurs="0" name="section" type="xs:int" />
         <xs:element minOccurs="0" name="question" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ListQuestions">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddComment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idQuestion" type="xs:int" />
+        <xs:element minOccurs="0" name="text" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListComments">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -35,7 +48,7 @@
   <xs:element name="GetAreasResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AskEpamWCFService.Entities" minOccurs="0" name="GetAreasResult" nillable="true" type="q1:ArrayOfSkill" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AskEpamEntities" minOccurs="0" name="GetAreasResult" nillable="true" type="q1:ArrayOfSkill" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -80,7 +93,15 @@
   <xs:element name="SendListQuestionsToClient">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AskEpamWCFService.Entities" minOccurs="0" name="list" nillable="true" type="q2:ArrayOfQuestion" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AskEpamEntities" minOccurs="0" name="list" nillable="true" type="q2:ArrayOfQuestion" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AskEpamEntities" minOccurs="0" name="sections" nillable="true" type="q3:ArrayOfQuestionSection" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendListCommentsToClient">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AskEpamEntities" minOccurs="0" name="list" nillable="true" type="q4:ArrayOfUserComment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

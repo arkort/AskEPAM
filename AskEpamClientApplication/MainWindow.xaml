@@ -18,7 +18,9 @@
             </MenuItem>
         </Menu>
         <Border BorderThickness="1" BorderBrush="Black" Margin="10,81,10,165">
-            <TextBlock Name="allMsg" TextWrapping="Wrap" Text="All comments on this question" Margin="0,9,0,0"/>
+            <ScrollViewer Name="MyScrollViewer">
+            <TextBlock Name="allMsg" TextWrapping="Wrap"  Text="All comments on this question"   VerticalAlignment="Top" />
+            </ScrollViewer>
         </Border>
         <Border BorderThickness="1" BorderBrush="Black" Margin="10,224,10,60">
             <TextBox Name ="myMsg" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  HorizontalAlignment="Left" Height="89" Margin="0,0,0,0" Text="The answer to the question" VerticalAlignment="Top" Width="351"/>

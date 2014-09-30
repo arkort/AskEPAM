@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 
-namespace AskEpamWCFService.Entities
+namespace AskEpamEntities
 {
     [DataContract]
 	public class Question
