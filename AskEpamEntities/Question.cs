@@ -10,12 +10,12 @@ namespace AskEpamEntities
 	public class Question
 	{
         [DataMember]
-		public long Id { get; set; }
+		public int Id { get; set; }
 
         [DataMember]
 		public string QuestionText { get; set; }
 
-        public Question(long Id, string QuestionText)
+        public Question(int Id, string QuestionText)
         {
             this.Id = Id;
             this.QuestionText = QuestionText;

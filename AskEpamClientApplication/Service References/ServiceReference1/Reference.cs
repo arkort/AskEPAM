@@ -28,7 +28,7 @@ namespace AskEpamClientApplication.ServiceReference1 {
         void AddComment(int idQuestion, string text);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAskService/ListComments")]
-        void ListComments();
+        void ListComments(int idQuestion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAskService/GetAreas", ReplyAction="http://tempuri.org/IAskService/GetAreasResponse")]
         AskEpamEntities.Skill[] GetAreas();
@@ -100,8 +100,8 @@ namespace AskEpamClientApplication.ServiceReference1 {
             base.Channel.AddComment(idQuestion, text);
         }
         
-        public void ListComments() {
-            base.Channel.ListComments();
+        public void ListComments(int idQuestion) {
+            base.Channel.ListComments(idQuestion);
         }
         
         public AskEpamEntities.Skill[] GetAreas() {

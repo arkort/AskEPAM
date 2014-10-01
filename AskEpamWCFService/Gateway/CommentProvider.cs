@@ -14,7 +14,7 @@ namespace AskEpamWCFService.Gateway
 
             Comment userComment = new Comment()
             {
-                idQuestion = 0,
+                idQuestion = idQuestion,
                 text = text
             };
 
@@ -22,7 +22,7 @@ namespace AskEpamWCFService.Gateway
             context.Comments.Context.SubmitChanges();
         }
 
-        public static List<UserComment> ListComments()
+        public static List<UserComment> ListComments(int idQuestion)
         {
             List<UserComment> userComments = new List<UserComment>();
 
@@ -31,7 +31,10 @@ namespace AskEpamWCFService.Gateway
 
             foreach (Comment comment in allUserQuestions)
             {
-                userComments.Add(new UserComment(Convert.ToInt32(comment.idQuestion), comment.text));
+                if (comment.idQuestion == idQuestion)
+                {
+                    userComments.Add(new UserComment(Convert.ToInt32(comment.idQuestion), comment.text));
+                }
             }
 
             return userComments;

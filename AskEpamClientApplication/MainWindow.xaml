@@ -26,7 +26,7 @@
             <TextBox Name ="myMsg" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  HorizontalAlignment="Left" Height="89" Margin="0,0,0,0" Text="The answer to the question" VerticalAlignment="Top" Width="351"/>
         </Border>
         <Button Content="Send message" HorizontalAlignment="Left" Margin="56,329,0,0" VerticalAlignment="Top" Width="274" Height="40" Click="MsgButton_Click"/>
-        <ComboBox Name="ListBox" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="343" Height="24"/>
+        <ComboBox Name="QuestionListBox" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="343" Height="24" SelectionChanged="QuestionListBox_SelectionChanged"/>
 
     </Grid>
 </Window>

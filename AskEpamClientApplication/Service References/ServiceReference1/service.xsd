@@ -37,7 +37,9 @@
   </xs:element>
   <xs:element name="ListComments">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idQuestion" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAreas">

@@ -25,6 +25,7 @@ namespace AskEpamClientApplication
     public partial class MainWindow : Window
     {
         List<QuestionSection> sections;
+        Question[] questions;
 
         InstanceContext instContext;
         AskServiceClient connectionToServer;
@@ -50,7 +51,7 @@ namespace AskEpamClientApplication
 
             //read comments
             clientInstance.obtainedListOfComments += clientInstance_obtainedListOfComments;
-            connectionToServer.ListComments();
+
         }
 
         void clientInstance_obtainedListOfComments(object sender, ClientInstance.CommentEventArgs e)
@@ -63,8 +64,6 @@ namespace AskEpamClientApplication
                 allMsg.Text += "\n" + comment.Text + "\n-------------------------------------------";
             }
             
-            
-
         }
 
         /// <summary>
@@ -75,15 +74,23 @@ namespace AskEpamClientApplication
         void ClientInstance_obtainedListOfQuestions(object sender, ClientInstance.QuestionEventArgs e)
         {
             List<string> listQuestionText = new List<string>();
-            foreach (Question question in e.ListQuestions)
+            questions = e.ListQuestions;
+            foreach (Question question in questions)
             {
                 listQuestionText.Add(question.QuestionText);
             }
 
             sections = e.Sections.ToList();
 
-            ListBox.ItemsSource = listQuestionText;
-            ListBox.SelectedIndex = 0;
+            QuestionListBox.ItemsSource = listQuestionText;
+            QuestionListBox.SelectedIndex = 0;
+
+            //determine id of question
+            if ((questions != null) && (questions.Length>0))
+            {
+                //QuestionSection questionSection = sections.Where((sec) => { return SectionListBox.Text == sec.SectionName; }).FirstOrDefault();
+                connectionToServer.ListComments(questions[0].Id);
+            }
         }
 
 
@@ -116,7 +123,12 @@ namespace AskEpamClientApplication
             //temporary code for check work of icon in tray
             myNotifyIcon.ShowCustomBalloon(new FancyBalloon(),PopupAnimation.Slide, 4000);
 
-            connectionToServer.AddComment(0, myMsg.Text);
+            Question currentQuestion = questions.Where((q) => { return q.QuestionText == QuestionListBox.Text; }).FirstOrDefault();
+
+            if (currentQuestion != null)
+            {
+                connectionToServer.AddComment(currentQuestion.Id, myMsg.Text);
+            }
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -133,6 +145,21 @@ namespace AskEpamClientApplication
         {
             AskQuestionWindow aqw = new AskQuestionWindow(connectionToServer, sections);
             aqw.ShowDialog();
+        }
+
+        private void QuestionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string  selectedQuestion=QuestionListBox.Items[QuestionListBox.SelectedIndex].ToString();
+            //determine id of question
+            if ((questions != null) && (questions.Length > 0))
+            {
+                Question currentQuestion = questions.Where((q) => { return q.QuestionText == selectedQuestion; }).FirstOrDefault();
+
+                if (currentQuestion != null)
+                {
+                    connectionToServer.ListComments(currentQuestion.Id);
+                }
+            }
         }
 
     }

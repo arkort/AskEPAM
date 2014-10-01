@@ -90,10 +90,10 @@ namespace AskEpamWCFService
         /// <summary>
         /// sending list of comments to client
         /// </summary>
-        public void ListComments()
+        public void ListComments(int idQuestion)
         {
             callback = OperationContext.Current.GetCallbackChannel<IAskCallback>();
-            callback.SendListCommentsToClient(CommentProvider.ListComments());
+            callback.SendListCommentsToClient(CommentProvider.ListComments(idQuestion));
         }
 
 

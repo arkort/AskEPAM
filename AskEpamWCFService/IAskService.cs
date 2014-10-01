@@ -26,7 +26,7 @@ namespace AskEpamWCFService
         void AddComment(int idQuestion, string text);
 
         [OperationContract(IsOneWay = true)]
-        void ListComments();
+        void ListComments(int idQuestion);
 
 		[OperationContract]
 		List<Skill> GetAreas();
