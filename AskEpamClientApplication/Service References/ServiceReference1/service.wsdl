@@ -241,52 +241,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="duplex_GetAreas_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="duplex_GetAreas_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="duplex_UpdateSkill_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -310,7 +264,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="duplex_UpdateSkill_output_policy">
+  <wsp:Policy wsu:Id="duplex_GetAnswerFromClient_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -333,7 +287,30 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="duplex_GetAnswerFromClient_Input_policy">
+  <wsp:Policy wsu:Id="duplex_AddUser_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="duplex_Autorization_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -448,6 +425,29 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="duplex_SendUserToClient_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
@@ -473,20 +473,17 @@
   <wsdl:message name="IAskService_ListComments_InputMessage">
     <wsdl:part name="parameters" element="tns:ListComments" />
   </wsdl:message>
-  <wsdl:message name="IAskService_GetAreas_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAreas" />
-  </wsdl:message>
-  <wsdl:message name="IAskService_GetAreas_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAreasResponse" />
-  </wsdl:message>
   <wsdl:message name="IAskService_UpdateSkill_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateSkill" />
   </wsdl:message>
-  <wsdl:message name="IAskService_UpdateSkill_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateSkillResponse" />
-  </wsdl:message>
   <wsdl:message name="IAskService_GetAnswerFromClient_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAnswerFromClient" />
+  </wsdl:message>
+  <wsdl:message name="IAskService_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="IAskService_Autorization_InputMessage">
+    <wsdl:part name="parameters" element="tns:Autorization" />
   </wsdl:message>
   <wsdl:message name="IAskService_SendAnswerToClient_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:SendAnswerToClient" />
@@ -499,6 +496,9 @@
   </wsdl:message>
   <wsdl:message name="IAskService_SendListCommentsToClient_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:SendListCommentsToClient" />
+  </wsdl:message>
+  <wsdl:message name="IAskService_SendUserToClient_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendUserToClient" />
   </wsdl:message>
   <wsdl:portType name="IAskService">
     <wsdl:operation name="Handshake">
@@ -517,16 +517,17 @@
     <wsdl:operation name="ListComments">
       <wsdl:input wsaw:Action="http://tempuri.org/IAskService/ListComments" message="tns:IAskService_ListComments_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAreas">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAskService/GetAreas" message="tns:IAskService_GetAreas_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAskService/GetAreasResponse" message="tns:IAskService_GetAreas_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="UpdateSkill">
       <wsdl:input wsaw:Action="http://tempuri.org/IAskService/UpdateSkill" message="tns:IAskService_UpdateSkill_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAskService/UpdateSkillResponse" message="tns:IAskService_UpdateSkill_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAnswerFromClient">
       <wsdl:input wsaw:Action="http://tempuri.org/IAskService/GetAnswerFromClient" message="tns:IAskService_GetAnswerFromClient_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAskService/AddUser" message="tns:IAskService_AddUser_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Autorization">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAskService/Autorization" message="tns:IAskService_Autorization_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendAnswerToClient">
       <wsdl:output wsaw:Action="http://tempuri.org/IAskService/SendAnswerToClient" message="tns:IAskService_SendAnswerToClient_OutputCallbackMessage" />
@@ -539,6 +540,9 @@
     </wsdl:operation>
     <wsdl:operation name="SendListCommentsToClient">
       <wsdl:output wsaw:Action="http://tempuri.org/IAskService/SendListCommentsToClient" message="tns:IAskService_SendListCommentsToClient_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendUserToClient">
+      <wsdl:output wsaw:Action="http://tempuri.org/IAskService/SendUserToClient" message="tns:IAskService_SendUserToClient_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="duplex" type="tns:IAskService">
@@ -583,32 +587,31 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="GetAreas">
-      <soap12:operation soapAction="http://tempuri.org/IAskService/GetAreas" style="document" />
-      <wsdl:input>
-        <wsp:PolicyReference URI="#duplex_GetAreas_Input_policy" />
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#duplex_GetAreas_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateSkill">
       <soap12:operation soapAction="http://tempuri.org/IAskService/UpdateSkill" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#duplex_UpdateSkill_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#duplex_UpdateSkill_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAnswerFromClient">
       <soap12:operation soapAction="http://tempuri.org/IAskService/GetAnswerFromClient" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#duplex_GetAnswerFromClient_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <soap12:operation soapAction="http://tempuri.org/IAskService/AddUser" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#duplex_AddUser_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Autorization">
+      <soap12:operation soapAction="http://tempuri.org/IAskService/Autorization" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#duplex_Autorization_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
@@ -637,6 +640,13 @@
       <soap12:operation soapAction="http://tempuri.org/IAskService/SendListCommentsToClient" style="document" />
       <wsdl:output>
         <wsp:PolicyReference URI="#duplex_SendListCommentsToClient_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendUserToClient">
+      <soap12:operation soapAction="http://tempuri.org/IAskService/SendUserToClient" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#duplex_SendUserToClient_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

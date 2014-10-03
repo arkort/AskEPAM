@@ -67,6 +67,9 @@
     <Compile Include="AskService.svc.cs">
       <DependentUpon>AskService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Gateway\AskEpamDB_LINQ.cs">
+      <DependentUpon>AskEpamDB_LINQ.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Gateway\AskEpamDB_LINQ.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

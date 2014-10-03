@@ -25,19 +25,22 @@ namespace AskEpamClientApplication.ServiceReference1 {
         void ListQuestions();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAskService/AddComment")]
-        void AddComment(int idQuestion, string text);
+        void AddComment(int idQuestion, string text, int idUser);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAskService/ListComments")]
         void ListComments(int idQuestion);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAskService/GetAreas", ReplyAction="http://tempuri.org/IAskService/GetAreasResponse")]
-        AskEpamEntities.Skill[] GetAreas();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAskService/UpdateSkill", ReplyAction="http://tempuri.org/IAskService/UpdateSkillResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAskService/UpdateSkill")]
         void UpdateSkill(string user, int skill);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAskService/GetAnswerFromClient")]
         void GetAnswerFromClient(int id, string answer, string answerer);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAskService/AddUser")]
+        void AddUser(AskEpamEntities.EpamUser user);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAskService/Autorization")]
+        void Autorization(AskEpamEntities.EpamUser user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -54,6 +57,9 @@ namespace AskEpamClientApplication.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAskService/SendListCommentsToClient")]
         void SendListCommentsToClient(AskEpamEntities.UserComment[] list);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAskService/SendUserToClient")]
+        void SendUserToClient(AskEpamEntities.EpamUser user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -96,16 +102,12 @@ namespace AskEpamClientApplication.ServiceReference1 {
             base.Channel.ListQuestions();
         }
         
-        public void AddComment(int idQuestion, string text) {
-            base.Channel.AddComment(idQuestion, text);
+        public void AddComment(int idQuestion, string text, int idUser) {
+            base.Channel.AddComment(idQuestion, text, idUser);
         }
         
         public void ListComments(int idQuestion) {
             base.Channel.ListComments(idQuestion);
-        }
-        
-        public AskEpamEntities.Skill[] GetAreas() {
-            return base.Channel.GetAreas();
         }
         
         public void UpdateSkill(string user, int skill) {
@@ -114,6 +116,14 @@ namespace AskEpamClientApplication.ServiceReference1 {
         
         public void GetAnswerFromClient(int id, string answer, string answerer) {
             base.Channel.GetAnswerFromClient(id, answer, answerer);
+        }
+        
+        public void AddUser(AskEpamEntities.EpamUser user) {
+            base.Channel.AddUser(user);
+        }
+        
+        public void Autorization(AskEpamEntities.EpamUser user) {
+            base.Channel.Autorization(user);
         }
     }
 }

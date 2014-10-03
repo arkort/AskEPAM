@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fe8a6b85-1250-457e-a7e0-289edd13bfda" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="83e4531d-b2fe-4b6c-af21-df275c403265" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,10 +21,10 @@
     <MetadataSource Address="http://localhost:62399/AskService.svc/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="b593152e-b777-4b81-bbd4-34f8584d5c54" SourceId="1" SourceUrl="http://localhost:62399/AskService.svc/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="ad8f5961-f54e-469f-8d50-20578daa80a1" SourceId="1" SourceUrl="http://localhost:62399/AskService.svc/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="be030b87-1d52-4cbf-b2cb-ca886181e5ec" SourceId="1" SourceUrl="http://localhost:62399/AskService.svc/mex" />
-    <MetadataFile FileName="AskEpamEntities.xsd" MetadataType="Schema" ID="5ca9f6e3-f070-4d4c-a433-a42d31202db9" SourceId="1" SourceUrl="http://localhost:62399/AskService.svc/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="7da3a447-a30f-43df-97db-1d6dd709e30c" SourceId="1" SourceUrl="http://localhost:62399/AskService.svc/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="92ae7c8e-2b69-4aff-ad21-05a242d82dfc" SourceId="1" SourceUrl="http://localhost:62399/AskService.svc/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="cde374e2-7d8a-497e-b8e4-c2b86fe747b0" SourceId="1" SourceUrl="http://localhost:62399/AskService.svc/mex" />
+    <MetadataFile FileName="AskEpamEntities.xsd" MetadataType="Schema" ID="b0df23bf-5ebd-44a7-b3ef-02ac515f8442" SourceId="1" SourceUrl="http://localhost:62399/AskService.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

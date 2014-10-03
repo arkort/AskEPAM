@@ -13,7 +13,7 @@ namespace AskEpamWCFService.Gateway
 	{
 		private const string CONNECTION_STRING = "Data Source=EPRUSARW0875;Persist Security Info=True;User ID=dev;Password=Welcome1;database=AskEpamDB";
 
-		public static User GetUser(string userName)
+		public static EpamUser GetUser(string userName)
 		{
 			using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
 			{
@@ -30,11 +30,11 @@ namespace AskEpamWCFService.Gateway
 					{
 						reader.Read();
 
-						var user = new User()
+						var user = new EpamUser()
 						{
 							Id = reader.GetInt32(reader.GetOrdinal("Id")),
-							DomainName = reader.GetString(reader.GetOrdinal("DomainName")),
-							SkillId = reader.GetInt32(reader.GetOrdinal("Skill"))
+							Login = reader.GetString(reader.GetOrdinal("DomainName")),
+							SkillValue = reader.GetInt32(reader.GetOrdinal("Skill"))
 						};
 
 						return user;
@@ -47,21 +47,69 @@ namespace AskEpamWCFService.Gateway
 			}
 		}
 
-		public static User AddUser(string userName)
+		public static EpamUser AddUser(EpamUser user)
 		{
-			using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
-			{
-				SqlCommand command = new SqlCommand("ADD_USER", connection);
-				command.CommandType = System.Data.CommandType.StoredProcedure;
+            //using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            //{
+            //    SqlCommand command = new SqlCommand("ADD_USER", connection);
+            //    command.CommandType = System.Data.CommandType.StoredProcedure;
 
-				command.Parameters.AddWithValue("@username", userName);
+            //    command.Parameters.AddWithValue("@login", user.DomainName);
+            //    command.Parameters.AddWithValue("@pwd", user.Pwd);
 
-				connection.Open();
+            //    connection.Open();
 
-				var id = command.ExecuteScalar();
+            //    var id = command.ExecuteScalar();
 
-				return new User() { Id = (int)(decimal)id, DomainName = userName, SkillId = 1 };
-			}
+            //    return new EpamUser() { Id = (int)(decimal)id, DomainName = user.DomainName, SkillValue = 0 };
+            //}
+            AskEpamDB_LINQDataContext context = new AskEpamDB_LINQDataContext();
+            var result = context.ADD_USER(user.Login, user.Pwd);
+
+            //this code needs improvement
+            int id = -1;
+            foreach (ADD_USERResult res in result)
+            {
+                id = res.id;
+            }
+
+            return new EpamUser(id, user.Login, 0);
+
 		}
+
+        public static EpamUser Autorization(EpamUser user)
+        {
+            AskEpamDB_LINQDataContext context = new AskEpamDB_LINQDataContext();
+            var result = context.AUTHORIZATION(user.Login, user.Pwd);
+
+            EpamUser epamUser=new EpamUser();
+            //this code needs improvement
+
+            foreach (AUTHORIZATIONResult res in result)
+            {
+                epamUser.Id = res.id;
+                epamUser.Login = res.login;
+                epamUser.SkillValue = Convert.ToInt32(res.skill);
+            }
+
+            if (epamUser.Id > 0)
+            {
+                return epamUser;
+            }
+
+            return null;
+        }
+
+        
+        public static string GetUserNameByID(int id)
+        {
+            //Need to create storage procedure!!!!!!!!!!!!
+
+            AskEpamDB_LINQDataContext context = new AskEpamDB_LINQDataContext();
+            User user = context.Users.Where((u) => u.id ==  id ).FirstOrDefault();
+
+            if (user != null) { return user.login; }
+            return "";
+        }
 	}
 }

@@ -23,7 +23,7 @@ namespace AskEpamWCFService
 
         //private Dictionary<string, Client> _clients = new Dictionary<string, Client>();
 
-		private int _lastId = 0;
+        //private int _lastId = 0;
 		private List<Question> _questions = new List<Question>();
 
         IAskCallback callback;
@@ -33,19 +33,19 @@ namespace AskEpamWCFService
             
         }
 
-        public void AddComment(int idQuestion, string text)
+        public void AddComment(int idQuestion, string text,int idUser)
         {
-            CommentProvider.AddComment(idQuestion, text);
+            CommentProvider.AddComment(idQuestion, text, idUser);
         }
 
 		public void Handshake(string user)
 		{
-			var currentUser = UserProvider.GetUser(user);
+            //var currentUser = UserProvider.GetUser(user);
 
-			if (currentUser == null)
-			{
-				currentUser = UserProvider.AddUser(user);
-			}
+            //if (currentUser == null)
+            //{
+            //    currentUser = UserProvider.AddUser(user);
+            //}
 
             //if (_clients.ContainsKey(user))
             //{
@@ -112,5 +112,28 @@ namespace AskEpamWCFService
             //_questions.FirstOrDefault(x => x.Id == id).Asker.Callback.SendAnswerToClient(answer, answerer);
             //_questions.Remove(_questions.FirstOrDefault(x => x.Id == id));
 		}
+
+        public void AddUser(EpamUser user)
+        {
+            //add user to DB
+            EpamUser epamUser = UserProvider.AddUser(user);
+
+            callback = OperationContext.Current.GetCallbackChannel<IAskCallback>();
+            callback.SendUserToClient(epamUser);
+        }
+
+        public void Autorization(EpamUser user)
+        {
+            EpamUser userFromDB=UserProvider.Autorization(user);
+            //add user to DB
+            if (userFromDB != null)
+            {
+                callback = OperationContext.Current.GetCallbackChannel<IAskCallback>();
+                callback.SendUserToClient(new EpamUser(userFromDB.Id,userFromDB.Login,userFromDB.SkillValue));
+            }
+
+            //callback = OperationContext.Current.GetCallbackChannel<IAskCallback>();
+            //callback.SendUserToClient(epamUser);
+        }
 	}
 }

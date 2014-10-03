@@ -2,22 +2,28 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="AskEpamDB_LINQ">
   <DataContextMoniker Name="/AskEpamDB_LINQDataContext" />
   <nestedChildShapes>
-    <classShape Id="74990160-aecc-4675-b26b-dfbfdb182ffe" absoluteBounds="1.625, 3.5, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/AskEpamDB_LINQDataContext/Section" />
-      <nestedChildShapes>
-        <elementListCompartment Id="acbfbf0b-f16c-4baa-ac15-69b716b7e614" absoluteBounds="1.6400000000000001, 3.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="9a65c148-35c2-4422-ac4c-d36b8cee2554" absoluteBounds="4.375, 2.25, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/AskEpamDB_LINQDataContext/UserQuestion" />
-      <nestedChildShapes>
-        <elementListCompartment Id="f01f8e8c-92a7-4762-bea2-f236e324a061" absoluteBounds="4.39, 2.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="605f3fc5-8185-4192-926e-06d05368a069" absoluteBounds="1.75, 1.625, 2, 1.3862939453125">
+    <classShape Id="7e244030-9cb0-4745-bb5c-76866aaaac99" absoluteBounds="0.625, 0.75, 2, 1.7708968098958331">
       <DataClassMoniker Name="/AskEpamDB_LINQDataContext/Comment" />
       <nestedChildShapes>
-        <elementListCompartment Id="e59c2863-581f-474d-be71-be3fdcc6df49" absoluteBounds="1.7650000000000001, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1d33e0d1-3c09-4d4c-838d-e84bce5d3400" absoluteBounds="0.64, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cd989f47-3b51-40ec-909e-f8545a2e6bf9" absoluteBounds="0.5, 3.125, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/AskEpamDB_LINQDataContext/Section" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fe76dcbc-a221-4b65-bc8c-5f6b0eb7cf1b" absoluteBounds="0.515, 3.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0519688e-3401-4763-b8fd-46d2fc91cfd3" absoluteBounds="3.375, 0.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/AskEpamDB_LINQDataContext/UserQuestion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="765be384-7849-47d7-8fe7-29cc4b9eecbe" absoluteBounds="3.39, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="00189e41-f4fa-4196-9ab2-3d187af9b65b" absoluteBounds="3.625, 3, 2, 1.3862939453125">
+      <DataClassMoniker Name="/AskEpamDB_LINQDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fda0d77a-5347-4c74-90d9-977a7d7ffefd" absoluteBounds="3.64, 3.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

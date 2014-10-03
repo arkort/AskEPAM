@@ -15,10 +15,18 @@ namespace AskEpamEntities
         [DataMember]
 		public string Text { get; set; }
 
-        public UserComment(int IdQuestion, string Text)
+        [DataMember]
+        public DateTime dateTimeCreation { get; set; }
+
+        [DataMember]
+        public string loginUser { get; set; }
+
+        public UserComment(int IdQuestion, string Text, DateTime dateTimeCreation, string loginUser)
         {
             this.IdQuestion = IdQuestion;
             this.Text = Text;
+            this.dateTimeCreation = dateTimeCreation;
+            this.loginUser = loginUser;
         }
     }
 }

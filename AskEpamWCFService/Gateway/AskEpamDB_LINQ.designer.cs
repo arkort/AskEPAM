@@ -30,15 +30,18 @@ namespace AskEpamWCFService.Gateway
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertComment(Comment instance);
+    partial void UpdateComment(Comment instance);
+    partial void DeleteComment(Comment instance);
     partial void InsertSection(Section instance);
     partial void UpdateSection(Section instance);
     partial void DeleteSection(Section instance);
     partial void InsertUserQuestion(UserQuestion instance);
     partial void UpdateUserQuestion(UserQuestion instance);
     partial void DeleteUserQuestion(UserQuestion instance);
-    partial void InsertComment(Comment instance);
-    partial void UpdateComment(Comment instance);
-    partial void DeleteComment(Comment instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public AskEpamDB_LINQDataContext() : 
@@ -71,6 +74,14 @@ namespace AskEpamWCFService.Gateway
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Comment> Comments
+		{
+			get
+			{
+				return this.GetTable<Comment>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Section> Sections
 		{
 			get
@@ -87,16 +98,188 @@ namespace AskEpamWCFService.Gateway
 			}
 		}
 		
-		public System.Data.Linq.Table<Comment> Comments
+		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
-				return this.GetTable<Comment>();
+				return this.GetTable<User>();
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ADD_USER")]
+		public ISingleResult<ADD_USERResult> ADD_USER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Login", DbType="NVarChar(50)")] string login, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pwd", DbType="NVarChar(50)")] string pwd)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), login, pwd);
+			return ((ISingleResult<ADD_USERResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.[AUTHORIZATION]")]
+		public ISingleResult<AUTHORIZATIONResult> AUTHORIZATION([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Login", DbType="NVarChar(50)")] string login, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pwd", DbType="NVarChar(50)")] string pwd)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), login, pwd);
+			return ((ISingleResult<AUTHORIZATIONResult>)(result.ReturnValue));
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comments")]
+	public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _idQuestion;
+		
+		private string _text;
+		
+		private System.Nullable<System.DateTime> _dateTimeCreation;
+		
+		private System.Nullable<int> _idUser;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnidQuestionChanging(System.Nullable<int> value);
+    partial void OnidQuestionChanged();
+    partial void OntextChanging(string value);
+    partial void OntextChanged();
+    partial void OndateTimeCreationChanging(System.Nullable<System.DateTime> value);
+    partial void OndateTimeCreationChanged();
+    partial void OnidUserChanging(System.Nullable<int> value);
+    partial void OnidUserChanged();
+    #endregion
+		
+		public Comment()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idQuestion", DbType="Int")]
+		public System.Nullable<int> idQuestion
+		{
+			get
+			{
+				return this._idQuestion;
+			}
+			set
+			{
+				if ((this._idQuestion != value))
+				{
+					this.OnidQuestionChanging(value);
+					this.SendPropertyChanging();
+					this._idQuestion = value;
+					this.SendPropertyChanged("idQuestion");
+					this.OnidQuestionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string text
+		{
+			get
+			{
+				return this._text;
+			}
+			set
+			{
+				if ((this._text != value))
+				{
+					this.OntextChanging(value);
+					this.SendPropertyChanging();
+					this._text = value;
+					this.SendPropertyChanged("text");
+					this.OntextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateTimeCreation", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dateTimeCreation
+		{
+			get
+			{
+				return this._dateTimeCreation;
+			}
+			set
+			{
+				if ((this._dateTimeCreation != value))
+				{
+					this.OndateTimeCreationChanging(value);
+					this.SendPropertyChanging();
+					this._dateTimeCreation = value;
+					this.SendPropertyChanged("dateTimeCreation");
+					this.OndateTimeCreationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idUser", DbType="Int")]
+		public System.Nullable<int> idUser
+		{
+			get
+			{
+				return this._idUser;
+			}
+			set
+			{
+				if ((this._idUser != value))
+				{
+					this.OnidUserChanging(value);
+					this.SendPropertyChanging();
+					this._idUser = value;
+					this.SendPropertyChanged("idUser");
+					this.OnidUserChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Section")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Sections")]
 	public partial class Section : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -316,17 +499,17 @@ namespace AskEpamWCFService.Gateway
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comments")]
-	public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _id;
 		
-		private System.Nullable<int> _idQuestion;
+		private string _login;
 		
-		private string _text;
+		private string _password;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -334,13 +517,13 @@ namespace AskEpamWCFService.Gateway
     partial void OnCreated();
     partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void OnidQuestionChanging(System.Nullable<int> value);
-    partial void OnidQuestionChanged();
-    partial void OntextChanging(string value);
-    partial void OntextChanged();
+    partial void OnloginChanging(string value);
+    partial void OnloginChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
     #endregion
 		
-		public Comment()
+		public User()
 		{
 			OnCreated();
 		}
@@ -365,42 +548,42 @@ namespace AskEpamWCFService.Gateway
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idQuestion", DbType="Int")]
-		public System.Nullable<int> idQuestion
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string login
 		{
 			get
 			{
-				return this._idQuestion;
+				return this._login;
 			}
 			set
 			{
-				if ((this._idQuestion != value))
+				if ((this._login != value))
 				{
-					this.OnidQuestionChanging(value);
+					this.OnloginChanging(value);
 					this.SendPropertyChanging();
-					this._idQuestion = value;
-					this.SendPropertyChanged("idQuestion");
-					this.OnidQuestionChanged();
+					this._login = value;
+					this.SendPropertyChanged("login");
+					this.OnloginChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string text
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string password
 		{
 			get
 			{
-				return this._text;
+				return this._password;
 			}
 			set
 			{
-				if ((this._text != value))
+				if ((this._password != value))
 				{
-					this.OntextChanging(value);
+					this.OnpasswordChanging(value);
 					this.SendPropertyChanging();
-					this._text = value;
-					this.SendPropertyChanged("text");
-					this.OntextChanged();
+					this._password = value;
+					this.SendPropertyChanged("password");
+					this.OnpasswordChanged();
 				}
 			}
 		}
@@ -422,6 +605,94 @@ namespace AskEpamWCFService.Gateway
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class ADD_USERResult
+	{
+		
+		private int _id;
+		
+		public ADD_USERResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class AUTHORIZATIONResult
+	{
+		
+		private int _id;
+		
+		private string _login;
+		
+		private System.Nullable<int> _skill;
+		
+		public AUTHORIZATIONResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="VarChar(100)")]
+		public string login
+		{
+			get
+			{
+				return this._login;
+			}
+			set
+			{
+				if ((this._login != value))
+				{
+					this._login = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skill", DbType="Int")]
+		public System.Nullable<int> skill
+		{
+			get
+			{
+				return this._skill;
+			}
+			set
+			{
+				if ((this._skill != value))
+				{
+					this._skill = value;
+				}
 			}
 		}
 	}

@@ -4,7 +4,9 @@ using Hardcodet.Wpf.TaskbarNotification;
 using Samples;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.ServiceModel;
 using System.Text;
 using System.Windows;
@@ -31,6 +33,8 @@ namespace AskEpamClientApplication
         AskServiceClient connectionToServer;
         ClientInstance clientInstance;
 
+        EpamUser currentUser;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,8 +44,8 @@ namespace AskEpamClientApplication
             bind.Executed += OpenFormCommand_Executed;
             this.CommandBindings.Add(bind);
 
+            //WCF duplex connection
             clientInstance = new ClientInstance();
-
             instContext = new InstanceContext(clientInstance);
             connectionToServer = new AskServiceClient(instContext);
 
@@ -51,16 +55,32 @@ namespace AskEpamClientApplication
 
             //read comments
             clientInstance.obtainedListOfComments += clientInstance_obtainedListOfComments;
+            clientInstance.obtainedUser += clientInstance_obtainedUser;
 
+            //temporary code
+            //SignUpWindow suw = new SignUpWindow(connectionToServer);
+            //suw.ShowDialog();
+
+            SignInWindow siw = new SignInWindow(connectionToServer);
+            siw.ShowDialog();
+
+            //createIniFile();
+        }
+
+        void clientInstance_obtainedUser(object sender, ClientInstance.UserEventArgs e)
+        {
+            currentUser = e.User;
+
+            this.Title += " " + currentUser.Login;
         }
 
         void clientInstance_obtainedListOfComments(object sender, ClientInstance.CommentEventArgs e)
         {
             allMsg.Text = "";
-            List<string> listQuestionText = new List<string>();
+            
             foreach (UserComment comment in e.ListComments)
             {
-                listQuestionText.Add(comment.Text);
+                allMsg.Text += "\n" + comment.loginUser+" "+comment.dateTimeCreation;
                 allMsg.Text += "\n" + comment.Text + "\n-------------------------------------------";
             }
             
@@ -93,8 +113,6 @@ namespace AskEpamClientApplication
             }
         }
 
-
-
         /// <summary>
         /// double click on notify icon
         /// </summary>
@@ -106,6 +124,23 @@ namespace AskEpamClientApplication
             this.ShowInTaskbar = true;
 
             myNotifyIcon.Visibility = Visibility.Hidden;
+        }
+
+        private void createIniFile()
+        {
+            //string login = "testLogin";
+
+            //EpamUser user = new EpamUser(login,Guid.NewGuid());
+
+            //Stream TestFileStream = File.Create("testIni.askepam");
+            //BinaryFormatter serializer = new BinaryFormatter();
+            //serializer.Serialize(TestFileStream, user);
+            //TestFileStream.Close();
+
+            //FileStream TestFileStream222 = new FileStream("testIni.askepam", FileMode.Open);
+            //BinaryFormatter serializer222 = new BinaryFormatter();
+            //User resUser = (User)serializer222.Deserialize(TestFileStream222);
+            //TestFileStream222.Close();
         }
 
 
@@ -127,8 +162,14 @@ namespace AskEpamClientApplication
 
             if (currentQuestion != null)
             {
-                connectionToServer.AddComment(currentQuestion.Id, myMsg.Text);
+                int idAutor=0;
+                if(currentUser!=null)
+                {
+                    idAutor=currentUser.Id;
+                }
+                connectionToServer.AddComment(currentQuestion.Id, myMsg.Text, idAutor);
             }
+
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
