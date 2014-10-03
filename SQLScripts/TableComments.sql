@@ -1,7 +1,7 @@
 USE [AskEpamDB]
 GO
 
-/****** Object:  Table [dbo].[Comments]    Script Date: 09/30/2014 17:57:02 ******/
+/****** Object:  Table [dbo].[Comments]    Script Date: 10/03/2014 17:46:14 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,6 +12,8 @@ CREATE TABLE [dbo].[Comments](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[idQuestion] [int] NULL,
 	[text] [text] NULL,
+	[dateTimeCreation] [datetime] NULL,
+	[idUser] [int] NULL,
  CONSTRAINT [PK_Comments] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC

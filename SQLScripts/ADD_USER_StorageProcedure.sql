@@ -1,7 +1,7 @@
 USE [AskEpamDB]
 GO
 
-/****** Object:  StoredProcedure [dbo].[ADD_USER]    Script Date: 10/03/2014 17:35:09 ******/
+/****** Object:  StoredProcedure [dbo].[ADD_USER]    Script Date: 10/03/2014 17:48:11 ******/
 SET ANSI_NULLS ON
 GO
 

@@ -1,7 +1,7 @@
 USE [AskEpamDB]
 GO
 
-/****** Object:  Table [dbo].[UserQuestions]    Script Date: 09/30/2014 17:57:35 ******/
+/****** Object:  Table [dbo].[UserQuestions]    Script Date: 10/03/2014 17:46:33 ******/
 SET ANSI_NULLS ON
 GO
 

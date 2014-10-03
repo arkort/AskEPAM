@@ -1,14 +1,14 @@
 USE [AskEpamDB]
 GO
 
-/****** Object:  Table [dbo].[Section]    Script Date: 09/30/2014 17:57:17 ******/
+/****** Object:  Table [dbo].[Sections]    Script Date: 10/03/2014 17:46:23 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[Section](
+CREATE TABLE [dbo].[Sections](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[title] [nchar](10) NULL,
  CONSTRAINT [PK_Section] PRIMARY KEY CLUSTERED 
