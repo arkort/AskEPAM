@@ -12,7 +12,8 @@
                         DoubleClickCommand="Open"/>
         <Menu Margin="0,0,0,353" >
             <MenuItem Header="File">
-                <MenuItem Header="Add new question" Click="AddNewQuestion_Click"></MenuItem>
+                <MenuItem Name="AddQuestionMenuItem" Header="Add new question" Click="AddNewQuestion_Click" IsEnabled="False"></MenuItem>
+                <MenuItem Name="SignInMenuItem" Header="Sign In" Click="SignIn_Click" IsEnabled="True"></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="Exit" Click="Exit_Click" ></MenuItem>
             </MenuItem>
@@ -25,7 +26,7 @@
         <Border BorderThickness="1" BorderBrush="Black" Margin="10,224,10,60">
             <TextBox Name ="myMsg" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  HorizontalAlignment="Left" Height="89" Margin="0,0,0,0" Text="The answer to the question" VerticalAlignment="Top" Width="351"/>
         </Border>
-        <Button Content="Send message" HorizontalAlignment="Left" Margin="56,329,0,0" VerticalAlignment="Top" Width="274" Height="40" Click="MsgButton_Click"/>
+        <Button Name="SendMsgButton" Content="Send message" HorizontalAlignment="Left" Margin="55,329,0,0" VerticalAlignment="Top" Width="274" Height="40" Click="MsgButton_Click" IsEnabled="False"/>
         <ComboBox Name="QuestionListBox" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="343" Height="24" SelectionChanged="QuestionListBox_SelectionChanged"/>
 
     </Grid>

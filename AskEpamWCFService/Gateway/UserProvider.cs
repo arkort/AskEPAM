@@ -102,13 +102,15 @@ namespace AskEpamWCFService.Gateway
 
         
         public static string GetUserNameByID(int id)
-        {
-            //Need to create storage procedure!!!!!!!!!!!!
+        { 
+            AskEpamDB_LINQDataContext context = new AskEpamDB_LINQDataContext(); 
+            var result = context.GET_USER_BY_ID(id);
 
-            AskEpamDB_LINQDataContext context = new AskEpamDB_LINQDataContext();
-            User user = context.Users.Where((u) => u.id ==  id ).FirstOrDefault();
-
-            if (user != null) { return user.login; }
+            foreach(GET_USER_BY_IDResult res in result)
+            {
+                return res.login;
+            }
+ 
             return "";
         }
 	}

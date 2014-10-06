@@ -27,20 +27,7 @@ namespace AskEpamClientApplication
             this.connectionToServer = connectionToServer;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string login = TextBoxLogin.Text;
-            string pwd = TextBoxPwd.Password; ;
-
-            if (checkInsertValue(login, pwd))
-            {
-                AskEpamEntities.EpamUser epamUser = new AskEpamEntities.EpamUser(login, pwd);
-
-                connectionToServer.Autorization(epamUser);
-                this.Close();
-            }     
-        }
-
+         
         private bool checkInsertValue(string login, string pwd)
         {
             try
@@ -58,6 +45,27 @@ namespace AskEpamClientApplication
             }
 
             return true;
+        }
+
+        private void SignIn_Click(object sender, RoutedEventArgs e)
+        {
+            string login = TextBoxLogin.Text;
+            string pwd = TextBoxPwd.Password; ;
+
+            if (checkInsertValue(login, pwd))
+            {
+                AskEpamEntities.EpamUser epamUser = new AskEpamEntities.EpamUser(login, pwd);
+
+                connectionToServer.Autorization(epamUser);
+                this.Close();
+            }   
+        }
+
+        private void SignUp_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            SignUpWindow suw = new SignUpWindow(connectionToServer);
+            suw.ShowDialog();
         }
     }
 }

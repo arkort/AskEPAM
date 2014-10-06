@@ -47,6 +47,10 @@ namespace AskEpamClientApplication
             //WCF duplex connection
             clientInstance = new ClientInstance();
             instContext = new InstanceContext(clientInstance);
+
+            //WSDualHttpBinding binding = new WSDualHttpBinding();
+            //EndpointAddress address = new EndpointAddress("http://localhost:62399/AskService.svc");
+
             connectionToServer = new AskServiceClient(instContext);
 
             //fill combobox with questions
@@ -57,21 +61,19 @@ namespace AskEpamClientApplication
             clientInstance.obtainedListOfComments += clientInstance_obtainedListOfComments;
             clientInstance.obtainedUser += clientInstance_obtainedUser;
 
-            //temporary code
-            //SignUpWindow suw = new SignUpWindow(connectionToServer);
-            //suw.ShowDialog();
-
             SignInWindow siw = new SignInWindow(connectionToServer);
             siw.ShowDialog();
 
-            //createIniFile();
         }
 
         void clientInstance_obtainedUser(object sender, ClientInstance.UserEventArgs e)
         {
             currentUser = e.User;
 
-            this.Title += " " + currentUser.Login;
+            this.Title += "  User: " + currentUser.Login;
+
+            SendMsgButton.IsEnabled = true;
+            AddQuestionMenuItem.IsEnabled = true;
         }
 
         void clientInstance_obtainedListOfComments(object sender, ClientInstance.CommentEventArgs e)
@@ -126,7 +128,7 @@ namespace AskEpamClientApplication
             myNotifyIcon.Visibility = Visibility.Hidden;
         }
 
-        private void createIniFile()
+        private void autoSignIn()
         {
             //string login = "testLogin";
 
@@ -186,6 +188,12 @@ namespace AskEpamClientApplication
         {
             AskQuestionWindow aqw = new AskQuestionWindow(connectionToServer, sections);
             aqw.ShowDialog();
+        }
+
+        private void SignIn_Click(object sender, RoutedEventArgs e)
+        {
+            SignInWindow siw = new SignInWindow(connectionToServer);
+            siw.ShowDialog();
         }
 
         private void QuestionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

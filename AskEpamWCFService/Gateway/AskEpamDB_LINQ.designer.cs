@@ -119,6 +119,13 @@ namespace AskEpamWCFService.Gateway
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), login, pwd);
 			return ((ISingleResult<AUTHORIZATIONResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GET_USER_BY_ID")]
+		public ISingleResult<GET_USER_BY_IDResult> GET_USER_BY_ID([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_user)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_user);
+			return ((ISingleResult<GET_USER_BY_IDResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comments")]
@@ -662,6 +669,50 @@ namespace AskEpamWCFService.Gateway
 					this._id = value;
 				}
 			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="VarChar(100)")]
+		public string login
+		{
+			get
+			{
+				return this._login;
+			}
+			set
+			{
+				if ((this._login != value))
+				{
+					this._login = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skill", DbType="Int")]
+		public System.Nullable<int> skill
+		{
+			get
+			{
+				return this._skill;
+			}
+			set
+			{
+				if ((this._skill != value))
+				{
+					this._skill = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GET_USER_BY_IDResult
+	{
+		
+		private string _login;
+		
+		private System.Nullable<int> _skill;
+		
+		public GET_USER_BY_IDResult()
+		{
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="VarChar(100)")]

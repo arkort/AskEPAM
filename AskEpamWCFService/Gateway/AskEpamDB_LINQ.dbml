@@ -46,4 +46,11 @@
       <Column Name="skill" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GET_USER_BY_ID" Method="GET_USER_BY_ID">
+    <Parameter Name="id_user" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_USER_BY_IDResult">
+      <Column Name="login" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="skill" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
