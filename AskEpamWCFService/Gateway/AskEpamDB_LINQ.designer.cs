@@ -126,6 +126,13 @@ namespace AskEpamWCFService.Gateway
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_user);
 			return ((ISingleResult<GET_USER_BY_IDResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.COMMENTS_LIST")]
+		public ISingleResult<COMMENTS_LISTResult> COMMENTS_LIST([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idQuestion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idQuestion);
+			return ((ISingleResult<COMMENTS_LISTResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comments")]
@@ -743,6 +750,68 @@ namespace AskEpamWCFService.Gateway
 				if ((this._skill != value))
 				{
 					this._skill = value;
+				}
+			}
+		}
+	}
+	
+	public partial class COMMENTS_LISTResult
+	{
+		
+		private string _text;
+		
+		private System.Nullable<System.DateTime> _dateTimeCreation;
+		
+		private string _login;
+		
+		public COMMENTS_LISTResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string text
+		{
+			get
+			{
+				return this._text;
+			}
+			set
+			{
+				if ((this._text != value))
+				{
+					this._text = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateTimeCreation", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dateTimeCreation
+		{
+			get
+			{
+				return this._dateTimeCreation;
+			}
+			set
+			{
+				if ((this._dateTimeCreation != value))
+				{
+					this._dateTimeCreation = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="VarChar(100)")]
+		public string login
+		{
+			get
+			{
+				return this._login;
+			}
+			set
+			{
+				if ((this._login != value))
+				{
+					this._login = value;
 				}
 			}
 		}

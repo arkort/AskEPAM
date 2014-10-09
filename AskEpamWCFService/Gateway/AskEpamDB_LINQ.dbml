@@ -53,4 +53,12 @@
       <Column Name="skill" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.COMMENTS_LIST" Method="COMMENTS_LIST">
+    <Parameter Name="idQuestion" Type="System.Int32" DbType="Int" />
+    <ElementType Name="COMMENTS_LISTResult">
+      <Column Name="text" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="dateTimeCreation" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="login" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -61,8 +61,12 @@ namespace AskEpamClientApplication
             clientInstance.obtainedListOfComments += clientInstance_obtainedListOfComments;
             clientInstance.obtainedUser += clientInstance_obtainedUser;
 
-            SignInWindow siw = new SignInWindow(connectionToServer);
-            siw.ShowDialog();
+            //SignInWindow siw = new SignInWindow(connectionToServer);
+            //siw.ShowDialog();
+
+            //SettingsWindow sw = new SettingsWindow(connectionToServer);
+            //sw.ShowDialog();
+
 
         }
 
@@ -194,6 +198,12 @@ namespace AskEpamClientApplication
         {
             SignInWindow siw = new SignInWindow(connectionToServer);
             siw.ShowDialog();
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow sw = new SettingsWindow(connectionToServer);
+            sw.ShowDialog();
         }
 
         private void QuestionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

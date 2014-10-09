@@ -29,20 +29,34 @@ namespace AskEpamWCFService.Gateway
             List<UserComment> userComments = new List<UserComment>();
 
             AskEpamDB_LINQDataContext context = new AskEpamDB_LINQDataContext();
-            List<Comment> allUserQuestions = context.Comments.ToList();
 
-            foreach (Comment comment in allUserQuestions)
+            //List<Comment> allUserComments = context.Comments.ToList();
+
+            //foreach (Comment comment in allUserComments)
+            //{
+            //    if (comment.idQuestion == idQuestion)
+            //    {
+            //        userComments.Add(new UserComment(
+            //            Convert.ToInt32(comment.idQuestion),
+            //            comment.text,
+            //            Convert.ToDateTime(comment.dateTimeCreation),
+            //            UserProvider.GetUserNameByID(Convert.ToInt32(comment.idUser))
+            //            ));
+            //    }
+            //}
+
+            //test with join
+            var listComment = context.COMMENTS_LIST(idQuestion);
+            foreach(COMMENTS_LISTResult comment in listComment)
             {
-                if (comment.idQuestion == idQuestion)
-                {
-                    userComments.Add(new UserComment(
-                        Convert.ToInt32(comment.idQuestion), 
-                        comment.text,
-                        Convert.ToDateTime(comment.dateTimeCreation),
-                        UserProvider.GetUserNameByID(Convert.ToInt32(comment.idUser))
-                        ));
-                }
+                userComments.Add(new UserComment(
+                       idQuestion,
+                       comment.text,
+                       Convert.ToDateTime(comment.dateTimeCreation),
+                       comment.login
+                       ));
             }
+            //-------------//-------------//---------//
 
             return userComments;
         }
